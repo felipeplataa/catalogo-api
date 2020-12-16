@@ -108,8 +108,9 @@ body{
 .table-cebra td {
     border-right: 1px solid #cccccc;
     min-width: 150px;
-    padding: 0.5rem;
+    padding: 0rem;
     text-align: left;
+    
 }
 .table-cebra th:last-child,
 .table-cebra td:last-child{
