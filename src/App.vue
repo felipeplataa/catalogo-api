@@ -230,7 +230,7 @@ body {
 .footer-left img{
   width: 50%;
   margin-left: 120px;
-  margin-top: 10px;
+  margin-top: 20px;
 }
 h2{
   font-weight: 600;
@@ -271,6 +271,7 @@ h2{
   height: 40px;
   display: inline-block;
   margin-left: 50px;
+  margin-top:15px;
 }
 .socials a i{
   color: #999;
