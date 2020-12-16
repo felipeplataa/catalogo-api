@@ -49,7 +49,7 @@ export default {
         cantidad_prod: this.cantidad_prod,
       };
       axios
-        .put("http://127.0.0.1:8000/producto/salida/", retiro)
+        .put("https://g3m4-gr10-catalogo-api.herokuapp.com/salida/", retiro)
         .then((respuesta) => {
           alert("Producto actualizado correctamente");
         })
