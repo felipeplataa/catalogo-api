@@ -45,7 +45,7 @@ export default {
             costo_prod_ent: this.costo_prod_ent
             }
             axios
-            .put("https://g3m4-gr10-catalogo-api.herokuapp.com/producto/entrada/",ingreso)
+            .put("https://g3m4-grupo10.herokuapp.com/producto/entrada/",ingreso)
             .then(respuesta=> {
                alert("Producto ingresado a inventario correctamente");
             })
