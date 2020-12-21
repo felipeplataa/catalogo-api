@@ -64,7 +64,7 @@ export default {
     },
     beforeCreate: function(){
         axios
-        .get("https://g3m4-g10-catalogo-app1.herokuapp.com/producto/")
+        .get("https://g3m4-grupo10.herokuapp.com/producto/")
         .then(respuesta => {
             this.database_producto = respuesta.data;
         })
