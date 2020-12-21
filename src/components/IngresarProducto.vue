@@ -1,19 +1,28 @@
 <template>
     <div id="agregar_producto">
-        <h3 align="center">Ingresar producto a Inventario</h3>
-        <p align="center">Función válida para ingresar productos que ya están creados en el inventario</p>
-        <h4>Pasos a seguir para realizar la entrada de productos en el inventario:</h4>
-        <p>1. Ingrese el código del producto creado del inventario.</p>
-        <p>2. Digite al frente de la casilla Cantidad de producto la cantidad de productos que ingresan.</p>
-        <p>3. Digite al frente de la casilla Costo de producto el costo de adquisición de los productos.</p>
-        <p>4. De click en agregar producto.</p>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimum-dcale=1.0">
+        <section class="contenedor sobre-nosotros">
+            <div class="contenedor-sobre-nosotros">
+                <img src="https://image.freepik.com/foto-gratis/personal-entrega-escanea-caja-carton-escaner-codigo-barras-verificar-productos-clientes_11304-1664.jpg" alt="" class="imagen-about-us">
+                <div class="contenido-textos">
+                    <h3 align="center">Ingresar producto a Inventario</h3>
+                    <h3 align="center">Función válida para ingresar productos que ya están creados en el inventario</h3>
+                    <p><span>1</span>Ingrese el código del producto creado del inventario.</p>
+                    <p><span>2</span>Digíte al frente de la casilla "Cantidad de producto" la cantidad de productos que ingresan.</p>
+                    <p><span>3</span>Digíte al frente de la casilla "Costo de producto" el costo de adquisición de los productos.</p>
+                    <p><span>4</span>De click en "Agregar producto".</p>
+                </div>
+            </div>
+        </section>
+    <div class="Label1">
         <b><label for="codigo_prod">Código de producto</label></b>
         <input v-model="codigo_prod" id="codigo_prod" name="codigo_prod" type="text">
         <b><label for="cantidad_prod">Cantidad de producto</label></b>
-        <input v-model="cantidad_prod" id="cantidad_prod" name="cantidad_prod" type="numeric">
+        <input v-model="cantidad_prod" id="cantidad_prod" name="cantidad_prod" type="number" min="0">
         <b><label for="costo_prod_ent">Costo de producto</label></b>
-        <input v-model="costo_prod_ent" id="costo_prod_ent" name="costo_prod_ent" type="numeric">
+        <input v-model="costo_prod_ent" id="costo_prod_ent" name="costo_prod_ent" type="number" min="0">
         <button v-on:click="ingresarProducto"> Agregar Producto</button>
+    </div>
     </div>
 
 </template>
@@ -45,13 +54,13 @@ export default {
             costo_prod_ent: this.costo_prod_ent
             }
             axios
-            .put("https://g3m4-grupo10.herokuapp.com/producto/entrada/",ingreso)
+            .put("https://g3m4-g10-catalogo-app1.herokuapp.com/producto/entrada/",ingreso)
             .then(respuesta=> {
                alert("Producto ingresado a inventario correctamente");
             })
             .catch(error => {
             console.log(error);
-            alert("Error en el servidorr"+error.response.status);
+            alert("Error en el servidor"+error.response.status);
 
         });
     }
@@ -70,5 +79,47 @@ export default {
     width:100%;
     display:flexbox;
     text-align: center;
+}
+.contenedor-sobre-nosotros{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.imagen-about-us{
+    width: 42%;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.sobre-nosotros .contenido-textos{
+    width: 48%;
+    margin-block-start: 20px;
+}
+
+.contenido-textos h3{
+    margin-bottom: 40px;
+}
+
+.contenido-textos p span{
+    background:#283747;
+    color: #ffffff;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    padding: 2px;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, .5);
+    margin-right: 5px;
+}
+
+.contenido-textos p{
+    padding: 0px 0px 30px 15px;
+    font-weight: 300;
+    text-align: justify;
+}
+
+.Label1{
+    margin-top: 40px;
 }
 </style>
