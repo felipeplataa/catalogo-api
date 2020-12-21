@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2 align="center">Información de todos los productos</h2>
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimum-dcale=1.0">
         <table class="table-cebra">
             <thead>
             <tr>
@@ -98,6 +98,7 @@ body{
     border:solid 1px #cccccc;
     border-spacing: 0;
     margin: auto;
+    margin-top: 50px;
 }
 .table-cebra thead tr {
     background: #283747;
