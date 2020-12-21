@@ -105,7 +105,7 @@ export default {
         almacen: this.almacen,
       };
       axios
-        .post("https://g3m4-grupo10.herokuapp.com/create/", ingreso)
+        .post("https://g3m4-grupo10.herokuapp.com/producto/create/", ingreso)
         .then((respuesta) => {
           alert("Producto creado en inventario correctamente");
         })
