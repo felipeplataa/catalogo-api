@@ -2,6 +2,7 @@
   <div id="app">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity= "sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimum-dcale=1.0">
     <div class="header">
       <div class="imagen1">
         <img src="./assets/Hola.png" alt="" />
@@ -34,6 +35,7 @@
         <button v-on:click="cambiarVer">Productos</button>
         <button v-on:click="cambiarEntrarProd">Entrada inventario</button>
         <button v-on:click="cambiarSacarProd">Salida inventario</button>
+        <button v-on:click="cambiarCrearProd">Crear Producto</button>
         <router-view></router-view>
       </nav>
     </div>
@@ -82,10 +84,12 @@
 import AgregarProducto from "./components/IngresarProducto";
 import SacarProducto from "./components/SacarProducto";
 import VerProductos from "./components/verProductos";
+import NuevoProducto from "./components/CrearProducto";
+
 
 export default {
   name: "App",
-  components: { AgregarProducto, SacarProducto, VerProductos},
+  components: { AgregarProducto, SacarProducto, VerProductos, NuevoProducto},
   methods: {
     cambiarEntrarProd: function () {
       if (this.$route.name != "ingresar") {
@@ -102,6 +106,12 @@ export default {
         this.$router.push({ name: "ver" });
       }
     },
+    cambiarCrearProd: function () {
+      if (this.$route.name != "crear") {
+        this.$router.push({ name: "crear" });
+      }
+    },
+
     beforeCreate: function () {
       if (this.$route.name != "verProductos") {
       }
@@ -141,7 +151,6 @@ body {
 }
 .imagen1 {
   padding: 20px 0px 0px 20px;
-
 }
 
 .textos-header {
@@ -170,7 +179,7 @@ body {
   width: 100%;
 }
 .main-component {
-  height: 75vh;
+  height: 100vh;
   margin: 0%;
   padding: 0%;
   background: #fdfefe;
@@ -191,7 +200,7 @@ body {
     align-items: center;
     justify-content: center;
     text-align: center;
-    margin-inline-start: 30px;
+    margin-inline-start: 40px;
     cursor: pointer;
   }
   .main-component nav button:hover{
@@ -199,7 +208,7 @@ body {
     background: #E5E7E9;
     border: 1px solid #E5E7E9;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
     text-align: center;
     cursor: pointer;
   }
@@ -229,7 +238,7 @@ body {
 }
 .footer-left img{
   width: 50%;
-  margin-left: 120px;
+  margin-left: 55px;
   margin-top: 20px;
 }
 h2{
@@ -271,7 +280,6 @@ h2{
   height: 40px;
   display: inline-block;
   margin-left: 50px;
-  margin-top:15px;
 }
 .socials a i{
   color: #999;
