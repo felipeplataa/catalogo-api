@@ -1,133 +1,115 @@
 <template>
-    <div>
-        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimum-dcale=1.0">
-        <table class="table-cebra">
-            <thead>
-            <tr>
-                <th>Código producto</th>
-                <th>Nombre de producto</th>
-                <th>unidad de Medida</th>
-                <th>Cantidad de productos</th>
-                <th>Costo Unitario de Productos</th>
-                <th>Precio de Venta de Productos</th>
-                <th>Proveedor</th>
-                <th>Almacén</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr v-for="producto in database_producto" v-bind:key="producto.codigo_prod">
-                <td>{{producto.codigo_prod}}</td>
-                <td>{{producto.nombre_prod}}</td>
-                <td>{{producto.unidad_de_medida_prod}}</td>
-                <td>{{producto.cantidad_prod}}</td>
-                <td>{{producto.costo_unit_prod}}</td>
-                <td>{{producto.precio_venta_prod}}</td>
-                <td>{{producto.proveedor}}</td>
-                <td>{{producto.almacen}}</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
+  <div id="sacar_producto">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximun-scale=1.0, minimum-dcale=1.0">
+     <section class="contenedor sobre-nosotros">
+            <div class="contenedor-sobre-nosotros">
+                <img src="https://image.freepik.com/foto-gratis/maquina-codigo-barras-caja_1150-5007.jpg" alt="" class="imagen-about-us">
+                <div class="contenido-textos">
+                    <h3 align="center">Salida de productos del inventario</h3>
+                    <h3 align="center">Función válida para retirar productos que ya están creados en el inventario</h3>
+                    <p><span>1</span>Ingrese el código del producto creado del inventario.</p>
+                    <p><span>2</span>Digíte al frente de la casilla "Cantidad de producto" la cantidad de productos que salen del inventario.</p>
+                    <p><span>3</span>De click en "Retirar producto".</p>
+                </div>
+            </div>
+        </section>
+    <div class="Label">
+    <b><label for="codigo_prod">Código de producto</label></b>
+    <input
+      v-model="codigo_prod"
+      id="codigo_prod"
+      name="codigo_prod"
+      type="text"
+    />
+    <b><label for="cantidad_prod">Cantidad de producto</label></b>
+    <input
+      v-model="cantidad_prod"
+      id="cantidad_prod"
+      name="cantidad_prod"
+      type="number" min="0"
+    />
+    <button v-on:click="retirarProducto">Retirar Producto</button>
+  </div>
+  </div>
 </template>
 
 <script>
-import axios from 'axios'
+import axios from "axios";
 export default {
-
-
-    name: "VerProductos",
-    data: function(){
-        return{
-            database_producto:[
-                {   
-                codigo_prod:"111111",
-                nombre_prod:"Arroz",
-                unidad_de_medida_prod:"Unidades",
-                cantidad_prod:200,
-                costo_unit_prod:2000,
-                precio_venta_prod:3000,
-                proveedor: "Empresa ABC SAS",
-                almacen: "AlmacenBogota"},
-
-               { 
-                codigo_prod:"22222",
-                nombre_prod:"Maiz Pira",
-                unidad_de_medida_prod:"Libras",
-                cantidad_prod:100,
-                costo_unit_prod:800,
-                precio_venta_prod:1400,
-                proveedor: "Empresa ABC SAS",
-                almacen: "AlmacenBogota"
-                }
-                ]
-        };
-    },
-    beforeCreate: function(){
-        axios
-        .get("https://g3m4-grupo10.herokuapp.com/producto/")
-        .then(respuesta => {
-            this.database_producto = respuesta.data;
+  name: "SacarProducto",
+  data: function () {
+    return {
+      codigo_prod: "",
+      cantidad_prod: "",
+    };
+  },
+  methods: {
+    retirarProducto: function () {
+      var retiro = {
+        codigo_prod: this.codigo_prod,
+        cantidad_prod: this.cantidad_prod,
+      };
+      axios
+        .put("https://g3m4-grupo10.herokuapp.com/producto/salida/", retiro)
+        .then((respuesta) => {
+          alert("Producto actualizado correctamente");
         })
-        .catch(error => {
-            console.log(error);
-            alert("Error en la petición con código"+error.response.status);
-
+        .catch((error) => {
+          console.log(error);
+          alert("Error en el servidor" + error.response.status);
         });
-    }
+    },
+  },
 };
 </script>
 
-<style>
-body{
-    margin: auto;
-    font-family: sans-serif;
-    font-size: 1rem;
-    line-height: 1.6em;
-    color: #283747;
+<style scoped>
+#sacar_producto {
+  background-color: #ffffff;
+  text-align: center;
 }
-* {
-    box-sizing: border-box;
-}
-.page-container {
-    max-width: 700px;
-    margin: 2rem auto;
+.contenedor-sobre-nosotros{
     display: flex;
-    align-items: center;
-}
-.table-cebra {
-    border:solid 1px #cccccc;
-    border-spacing: 0;
-    margin: auto;
-    margin-top: 50px;
-}
-.table-cebra thead tr {
-    background: #283747;
-    color: white;
+    justify-content: space-evenly;
 }
 
-.table-cebra th,
-.table-cebra td {
-    border-right: 1px solid #cccccc;
-    min-width: 150px;
-    padding: 0rem;
-    text-align: left;
-    
+.imagen-about-us{
+    width: 42%;
+    margin-top: 50px;
+    margin-left: 50px;
 }
-.table-cebra th:last-child,
-.table-cebra td:last-child{
-    border-right: 0;
+
+.sobre-nosotros .contenido-textos{
+    width: 48%;
+    margin-block-start: 60px;
 }
-.table-cebra td {
-    border-bottom: 1px solid #cccccc;
+
+.contenido-textos h3{
+    margin-bottom: 40px;
+
 }
-.table-cebra tbody tr{
-    background: white;
+
+.contenido-textos p span{
+    background: #283747;
+    color: #ffffff;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    padding: 2px;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, .5);
+    margin-right: 5px;
 }
-.table-cebra tbody tr:nth-child(2n){
-    background: #f2f2f2;
+
+.contenido-textos p{
+    padding: 0px 0px 30px 15px;
+    font-weight: 300;
+    text-align: justify;
+    font-size: 16px;
 }
-.table-container{
-    max-width: 100%;
-    overflow-x: scroll;
+
+.Label{
+    margin-top: 37px;
 }
 </style>
