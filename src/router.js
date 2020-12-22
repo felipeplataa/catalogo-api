@@ -3,14 +3,18 @@ import AgregarProducto from "./components/IngresarProducto";
 import SacarProducto from "./components/SacarProducto";
 import VerProductos from "./components/verProductos";
 import NuevoProducto from "./components/CrearProducto";
-
+import Inicio from "./components/Inicio"
 
 
 
 const router= new VueRouter({
    // mode:"history",
         routes:[
-
+            {
+               name:'Inicio',
+               path:'/',
+               component: Inicio
+            },
             {
                name:'ingresar',
                path:'/ingresar/',
