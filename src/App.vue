@@ -32,10 +32,11 @@
             <h2 class="titulo">Catálogo</h2>
       </section>
       <nav>
+        <button v-on:click="cambiarInicio">Inicio</button>
         <button v-on:click="cambiarVer">Productos</button>
+        <button v-on:click="cambiarCrearProd">Crear Producto</button>
         <button v-on:click="cambiarEntrarProd">Entrada inventario</button>
         <button v-on:click="cambiarSacarProd">Salida inventario</button>
-        <button v-on:click="cambiarCrearProd">Crear Producto</button>
         <router-view></router-view>
       </nav>
     </div>
@@ -47,6 +48,8 @@
           <a href="#" class="facebook"><i class="fab fa-facebook-f"></i></a>
            <a href="#" class="facebook"><i class="fab fa-twitter"></i></a>
             <a href="#" class="facebook"><i class="fab fa-whatsapp"></i></a>
+            <a href="#" class="instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="linkedin"><i class="fab fa-linkedin"></i></a>
         </div>
       </div>
     <ul class="footer-right">
@@ -85,12 +88,17 @@ import AgregarProducto from "./components/IngresarProducto";
 import SacarProducto from "./components/SacarProducto";
 import VerProductos from "./components/verProductos";
 import NuevoProducto from "./components/CrearProducto";
-
+import Inicio from "./components/Inicio";
 
 export default {
   name: "App",
-  components: { AgregarProducto, SacarProducto, VerProductos, NuevoProducto},
+  components: { AgregarProducto, SacarProducto, VerProductos, NuevoProducto, Inicio},
   methods: {
+    cambiarInicio: function () {
+      if (this.$route.name != "Inicio") {
+        this.$router.push({ name: "Inicio" });
+      }
+    },
     cambiarEntrarProd: function () {
       if (this.$route.name != "ingresar") {
         this.$router.push({ name: "ingresar" });
@@ -279,10 +287,11 @@ h2{
   width: 40px;
   height: 40px;
   display: inline-block;
-  margin-left: 50px;
+  margin-left: 40px;
+  margin-top: 10px;
 }
 .socials a i{
-  color: #999;
+  color: rgb(53, 49, 49);
   padding: 10px 12px;
   font-size: 20px;
 }
